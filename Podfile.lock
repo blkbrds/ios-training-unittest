@@ -1,0 +1,71 @@
+PODS:
+  - Alamofire (4.7.3)
+  - AlamofireNetworkActivityIndicator (2.3.0):
+    - Alamofire (~> 4.7)
+  - AsyncSwift (2.0.4)
+  - MVVM-Swift (1.1.0)
+  - Nimble (9.0.0)
+  - ObjectMapper (3.3.0)
+  - OHHTTPStubs/Core (9.0.0)
+  - OHHTTPStubs/Default (9.0.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (9.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (9.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (9.0.0)
+  - OHHTTPStubs/Swift (9.0.0):
+    - OHHTTPStubs/Default
+  - PureLayout (3.1.6)
+  - Quick (3.0.0)
+  - SDWebImage (5.9.2):
+    - SDWebImage/Core (= 5.9.2)
+  - SDWebImage/Core (5.9.2)
+  - SwiftUtils (4.2.1)
+
+DEPENDENCIES:
+  - Alamofire (= 4.7.3)
+  - AlamofireNetworkActivityIndicator (= 2.3.0)
+  - AsyncSwift (= 2.0.4)
+  - MVVM-Swift (= 1.1.0)
+  - Nimble (= 9.0.0)
+  - ObjectMapper (= 3.3.0)
+  - OHHTTPStubs/Swift (= 9.0.0)
+  - PureLayout (= 3.1.6)
+  - Quick (= 3.0.0)
+  - SDWebImage (= 5.9.2)
+  - SwiftUtils (= 4.2.1)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AlamofireNetworkActivityIndicator
+    - AsyncSwift
+    - MVVM-Swift
+    - Nimble
+    - ObjectMapper
+    - OHHTTPStubs
+    - PureLayout
+    - Quick
+    - SDWebImage
+    - SwiftUtils
+
+SPEC CHECKSUMS:
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  AlamofireNetworkActivityIndicator: 18346ff6d770d9513d0ac6f2d99706f40f93dbaa
+  AsyncSwift: 65775a7b32e740609b24969ece3de58723b9dc3e
+  MVVM-Swift: 54749cc12bb30af41632f30a2c576a18bf9e4bc8
+  Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
+  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
+  OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
+  PureLayout: bd3c4ec3a3819ad387c99ebb72c6b129c3ed4d2d
+  Quick: 6d9559f40647bc4d510103842ef2fdd882d753e2
+  SDWebImage: 0b42b8719ab0c5257177d5894306e8a336b21cbb
+  SwiftUtils: fa346feeac5a25eab7ea5d59f1857c6253cb8ab1
+
+PODFILE CHECKSUM: 1b6aff680b26981af6fa9a19b1feb28700932de7
+
+COCOAPODS: 1.9.2
