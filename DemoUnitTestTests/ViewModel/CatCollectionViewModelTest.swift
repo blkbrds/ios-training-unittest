@@ -98,6 +98,14 @@ class CatCollectionViewModelTest: QuickSpec {
                 
                 it("Mảng cats có nhiều giá trị") {
                     let cat = Cat()
+                    viewModel.cats = [cat, cat, cat, cat, cat]
+                    expect {
+                        try viewModel.viewModelForItem(at: IndexPath(row: 4, section: 0)) as CatCellViewModel
+                    }.to(beAnInstanceOf(CatCellViewModel.self))
+                }
+                
+                it("Mảng cats có nhiều giá trị") {
+                    let cat = Cat()
                     viewModel.cats = [cat, cat, cat]
                     expect {
                         try viewModel.viewModelForItem(at: IndexPath(row: 4, section: 0)) as CatCellViewModel
