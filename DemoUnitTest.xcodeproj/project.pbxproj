@@ -41,6 +41,8 @@
 		A0D04274255A8DB000FD5E3E /* CatCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D04273255A8DB000FD5E3E /* CatCellViewModel.swift */; };
 		A0EEF6732561099E00F137ED /* GetErrorJson.json in Resources */ = {isa = PBXBuildFile; fileRef = A0EEF6722561099E00F137ED /* GetErrorJson.json */; };
 		AF72E7CE9AA19B14E0C8CB53 /* Pods_DemoUnitTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 394D97A90DF75EC7AF91DE8A /* Pods_DemoUnitTestTests.framework */; };
+		EB14BA7E2578EC11004417C5 /* CatCollectionViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14BA7D2578EC11004417C5 /* CatCollectionViewModelTest.swift */; };
+		EB14BA822578EC2E004417C5 /* InputInfoViewModelTestNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14BA812578EC2E004417C5 /* InputInfoViewModelTestNew.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +98,8 @@
 		A0EEF6722561099E00F137ED /* GetErrorJson.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetErrorJson.json; sourceTree = "<group>"; };
 		C4D23EC61BDE5D3BD46B1954 /* Pods-DemoUnitTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoUnitTest.release.xcconfig"; path = "Target Support Files/Pods-DemoUnitTest/Pods-DemoUnitTest.release.xcconfig"; sourceTree = "<group>"; };
 		E037F6D72BB9289AF94ED3F6 /* Pods_DemoUnitTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoUnitTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB14BA7D2578EC11004417C5 /* CatCollectionViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCollectionViewModelTest.swift; sourceTree = "<group>"; };
+		EB14BA812578EC2E004417C5 /* InputInfoViewModelTestNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputInfoViewModelTestNew.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +169,8 @@
 		A0192CA7255FAC31002C3B71 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				EB14BA812578EC2E004417C5 /* InputInfoViewModelTestNew.swift */,
+				EB14BA7D2578EC11004417C5 /* CatCollectionViewModelTest.swift */,
 				A02615742553A80500A5DB60 /* LoginViewModelTest.swift */,
 				A0206B3225762C7600C59F0E /* InputInfoViewModelTest.swift */,
 			);
@@ -530,8 +536,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB14BA822578EC2E004417C5 /* InputInfoViewModelTestNew.swift in Sources */,
 				A02615752553A80500A5DB60 /* LoginViewModelTest.swift in Sources */,
 				A0206B3325762C7600C59F0E /* InputInfoViewModelTest.swift in Sources */,
+				EB14BA7E2578EC11004417C5 /* CatCollectionViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
