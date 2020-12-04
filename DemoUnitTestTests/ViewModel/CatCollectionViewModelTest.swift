@@ -92,8 +92,8 @@ final class CatCollectionViewModelTest: QuickSpec {
                 }
             }
             
-            describe("Test each cat object") {
-                it("") {
+            describe("") {
+                it("Test each cat object") {
                     let firstCat: Cat = Cat()
                     firstCat.name = "Tom"
                     let secondCat: Cat = Cat()
@@ -102,6 +102,14 @@ final class CatCollectionViewModelTest: QuickSpec {
                     viewModel.cats.append(secondCat)
                     expect(viewModel.cats[0].name) == "Tom"
                     expect(viewModel.cats[1].name) == "Miu"
+                }
+            }
+            
+            describe("") {
+                it("Test beAnInstanceOf function") {
+                    let cat = Cat()
+                    viewModel.cats = [cat, cat, cat]
+                    expect(try viewModel.viewModelForItem(at: IndexPath(row: 1, section: 0))).to(beAnInstanceOf(CatCellViewModel.self))
                 }
             }
             
