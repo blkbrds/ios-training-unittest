@@ -35,6 +35,28 @@ final class CatCollectionViewModelTest: QuickSpec {
                     viewModel.cats = [Cat()]
                     expect(viewModel.numberOfItems(inSection: 0)) == 1
                 }
+
+                it ("view Model For Item throw exception") {
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    viewModel.cats = []
+                    expect{ try viewModel.viewModelForItem(at: indexPath)}.to(throwError())
+                }
+
+                it ("view Model For Item no throw exception") {
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    viewModel.cats = [Cat()]
+                    expect{ try viewModel.viewModelForItem(at: indexPath)}.toNot(throwError())
+                }
+
+                it ("view Model For Item return value") {
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    let cat1 = Cat()
+                    cat1.id = "1"
+                    cat1.name = "cat1"
+                    viewModel.cats = [cat1]
+                    let value = try viewModel.viewModelForItem(at: indexPath)
+                    expect(value).to(beAnInstanceOf(CatCellViewModel.self))
+                }
             }
             afterEach {
                 viewModel = nil
