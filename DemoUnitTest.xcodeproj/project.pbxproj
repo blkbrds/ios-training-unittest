@@ -17,6 +17,7 @@
 		A0206B2B257626B400C59F0E /* InputInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0206B29257626B400C59F0E /* InputInfoViewController.xib */; };
 		A0206B2F25762A3E00C59F0E /* InputInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0206B2E25762A3E00C59F0E /* InputInfoViewModel.swift */; };
 		A0206B3325762C7600C59F0E /* InputInfoViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0206B3225762C7600C59F0E /* InputInfoViewModelTest.swift */; };
+		A02615752553A80500A5DB60 /* LoginViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02615742553A80500A5DB60 /* LoginViewModelTest.swift */; };
 		A0A856072552A7B800C96037 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A856062552A7B800C96037 /* AppDelegate.swift */; };
 		A0A856092552A7B800C96037 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A856082552A7B800C96037 /* SceneDelegate.swift */; };
 		A0A8560B2552A7B800C96037 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A8560A2552A7B800C96037 /* ContentView.swift */; };
@@ -40,8 +41,6 @@
 		A0D04274255A8DB000FD5E3E /* CatCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D04273255A8DB000FD5E3E /* CatCellViewModel.swift */; };
 		A0EEF6732561099E00F137ED /* GetErrorJson.json in Resources */ = {isa = PBXBuildFile; fileRef = A0EEF6722561099E00F137ED /* GetErrorJson.json */; };
 		AF72E7CE9AA19B14E0C8CB53 /* Pods_DemoUnitTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 394D97A90DF75EC7AF91DE8A /* Pods_DemoUnitTestTests.framework */; };
-		B59F2BC42577A08E00FF6FC9 /* LoginViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F2BC32577A08E00FF6FC9 /* LoginViewModelTest.swift */; };
-		B5F833BB2579D78E00F9F11E /* CatCollectionViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F833BA2579D78E00F9F11E /* CatCollectionViewModelTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +67,7 @@
 		A0206B29257626B400C59F0E /* InputInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputInfoViewController.xib; sourceTree = "<group>"; };
 		A0206B2E25762A3E00C59F0E /* InputInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputInfoViewModel.swift; sourceTree = "<group>"; };
 		A0206B3225762C7600C59F0E /* InputInfoViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputInfoViewModelTest.swift; sourceTree = "<group>"; };
+		A02615742553A80500A5DB60 /* LoginViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTest.swift; sourceTree = "<group>"; };
 		A0A856032552A7B800C96037 /* DemoUnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoUnitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0A856062552A7B800C96037 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0A856082552A7B800C96037 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,8 +94,6 @@
 		A0D04271255A884900FD5E3E /* CatCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCollectionViewModel.swift; sourceTree = "<group>"; };
 		A0D04273255A8DB000FD5E3E /* CatCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCellViewModel.swift; sourceTree = "<group>"; };
 		A0EEF6722561099E00F137ED /* GetErrorJson.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetErrorJson.json; sourceTree = "<group>"; };
-		B59F2BC32577A08E00FF6FC9 /* LoginViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTest.swift; sourceTree = "<group>"; };
-		B5F833BA2579D78E00F9F11E /* CatCollectionViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCollectionViewModelTest.swift; sourceTree = "<group>"; };
 		C4D23EC61BDE5D3BD46B1954 /* Pods-DemoUnitTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoUnitTest.release.xcconfig"; path = "Target Support Files/Pods-DemoUnitTest/Pods-DemoUnitTest.release.xcconfig"; sourceTree = "<group>"; };
 		E037F6D72BB9289AF94ED3F6 /* Pods_DemoUnitTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoUnitTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -167,9 +165,8 @@
 		A0192CA7255FAC31002C3B71 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				B5F833BA2579D78E00F9F11E /* CatCollectionViewModelTest.swift */,
+				A02615742553A80500A5DB60 /* LoginViewModelTest.swift */,
 				A0206B3225762C7600C59F0E /* InputInfoViewModelTest.swift */,
-				B59F2BC32577A08E00FF6FC9 /* LoginViewModelTest.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -533,8 +530,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B59F2BC42577A08E00FF6FC9 /* LoginViewModelTest.swift in Sources */,
-				B5F833BB2579D78E00F9F11E /* CatCollectionViewModelTest.swift in Sources */,
+				A02615752553A80500A5DB60 /* LoginViewModelTest.swift in Sources */,
 				A0206B3325762C7600C59F0E /* InputInfoViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
