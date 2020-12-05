@@ -9,7 +9,15 @@
 import Foundation
 import MVVM
 
-final class CatCellViewModel: ViewModel {
+final class CatCellViewModel: ViewModel, Equatable {
+
+    static func == (lhs: CatCellViewModel, rhs: CatCellViewModel) -> Bool {
+        return lhs.urlString == rhs.urlString
+            && lhs.imageURL == rhs.imageURL
+            && lhs.name == rhs.name
+            && lhs.lifeSpan == rhs.lifeSpan
+            && lhs.temperament == rhs.temperament
+    }
 
     var imageURL: URL?
     var urlString = ""
