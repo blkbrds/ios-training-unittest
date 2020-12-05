@@ -14,7 +14,7 @@ import Quick
 final class CatCollectionViewModelTest: QuickSpec {
     override func spec() {
         var viewModel: CatCollectionViewModel!
-        context("Valid table view") {
+        context("CatCollectionViewModel") {
             beforeEach {
                 viewModel = CatCollectionViewModel()
             }
@@ -40,31 +40,13 @@ final class CatCollectionViewModelTest: QuickSpec {
             
             describe("View model for item") {
                 
-                it("Number of items = 1 - row: 0") {
+                it("Not empty - row: 0") {
                     let indexPath = IndexPath(row: 0, section: 0)
                     viewModel.cats = [Cat(), Cat()]
                     expect({ try viewModel.viewModelForItem(at: indexPath) }).notTo(throwError())
                 }
-            }
-            
-            afterEach {
-                viewModel = nil
-            }
-        }
-        
-        context("Invalid table view") {
-            beforeEach {
-                viewModel = CatCollectionViewModel()
-            }
-            
-            describe("View model for item") {
-                it("Number of items = 0 - row: 0") {
-                    let indexPath = IndexPath(row: 0, section: 0)
-                    expect({ try viewModel.viewModelForItem(at: indexPath) }).to(throwError(Errors.indexOutOfBound))
-                }
                 
-                it("Number of items = 1 - row: 1") {
-                    viewModel.cats = [Cat()]
+                it("Empty - row: 1") {
                     let indexPath = IndexPath(row: 1, section: 0)
                     expect({ try viewModel.viewModelForItem(at: indexPath) }).to(throwError(Errors.indexOutOfBound))
                 }

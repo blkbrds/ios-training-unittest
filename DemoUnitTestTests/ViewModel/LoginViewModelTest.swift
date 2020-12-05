@@ -70,7 +70,7 @@ class LoginViewModelTest: QuickSpec {
                     expect(viewModel.isValidUser) == false
                 }
                 
-                it("Tên chứa kí tự số, tự đặc biệ") {
+                it("Tên chứa kí tự số, tự đặc biệt") {
                     viewModel.name = "12CBS&^(@"
                     expect(viewModel.isValidUser) == false
                 }
@@ -94,7 +94,43 @@ class LoginViewModelTest: QuickSpec {
             }
             
             describe("Không chấp nhận cả hai") {
-                //
+                it("Tên chứa kí tự số, Mật khẩu có 7 kí tự") {
+                    viewModel.name = "12CBS"
+                    viewModel.passWord = "1234576"
+                    expect(viewModel.isValidUser) == false
+                }
+                
+                it("Tên chứa kí tự đặc biệt, Mật khẩu có 7 kí tự") {
+                    viewModel.name = "12CBS"
+                    viewModel.passWord = "1234576"
+                    expect(viewModel.isValidUser) == false
+                }
+                
+                it("Tên chứa kí tự số, tự đặc biệt, Mật khẩu có 7 kí tự") {
+                    viewModel.name = "12CBS&^(@"
+                    viewModel.passWord = "1234576"
+                    expect(viewModel.isValidUser) == false
+                }
+                
+                it("Tên chứa kí tự số, Tên chứa kí tự đặc biệt") {
+                    viewModel.name = "12CBS"
+                    viewModel.passWord = "1234576@$$"
+                    expect(viewModel.isValidUser) == false
+                }
+                
+                it("Tên chứa kí tự đặc biệt, Tên chứa kí tự đặc biệt") {
+                    viewModel.name = "12CBS"
+                    viewModel.passWord = "1234576@$$"
+                    expect(viewModel.isValidUser) == false
+                }
+                
+                it("Tên chứa kí tự số, tự đặc biệt, Tên chứa kí tự đặc biệt") {
+                    viewModel.name = "12CBS&^(@"
+                    viewModel.passWord = "1234576@$$"
+                    expect(viewModel.isValidUser) == false
+                }
+                
+                //...
             }
             afterEach {
                 viewModel = nil
