@@ -15,57 +15,113 @@ import Quick
 final class InputInfoViewModelTest: QuickSpec {
 
     override func spec() {
-        var viewModel: InputInfoViewModel!
+        testCasePassFuncValidInfo()
+        testCaseFailFuncValidInfo()
+    }
+}
 
-        context("Đủ điều kiện nhập nghĩa vụ quân sự") {
+// MARK: - FuncValidInfo
+extension InputInfoViewModelTest {
+    /*/
+     input
+     https://docs.google.com/presentation/d/195SciG8rcOM5-51maaAWkI6oi9esrQUz/edit#slide=id.p28
+     */
+
+    fileprivate  func testCasePassFuncValidInfo() {
+        var viewModel: InputInfoViewModel!
+        Quick.context("Đủ điều kiện nhập nghĩa vụ quân sự") {
             beforeEach() {
                 viewModel = InputInfoViewModel()
             }
-            describe("Test với tất cả input tạch nghĩa vụ quân sự") {
-                it("Đủ tuổi, không cận") {
-                    viewModel.age = 20
-                    viewModel.nearsightedness = 0
-                    expect(viewModel.validInfo()) == true
-                }
 
+            describe("Test case cơ bản") {
                 it("Đủ tuổi, xém cận") {
-                    viewModel.age = 20
+                    viewModel.age = 18
                     viewModel.nearsightedness = 1.4
                     expect(viewModel.validInfo()) == true
                 }
 
-                it("Xém hết tuổi, xém cận") {
+                it("Xém quá tuổi, xém cận") {
                     viewModel.age = 27
                     viewModel.nearsightedness = 1.4
                     expect(viewModel.validInfo()) == true
                 }
             }
+
+            describe("Test case bất kỳ") {
+                it("Xém quá tuổi, không cận") {
+                    viewModel.age = 27
+                    viewModel.nearsightedness = 0
+                    expect(viewModel.validInfo()) == true
+                }
+
+                it("Đủ tuổi, không cận") {
+                    viewModel.age = 27
+                    viewModel.nearsightedness = 1
+                    expect(viewModel.validInfo()) == true
+                }
+            }
+
             afterEach {
                 viewModel = nil
             }
-
         }
+    }
 
+    func testCaseFailFuncValidInfo() {
+        var viewModel: InputInfoViewModel!
         context("Không đủ điều kiện nhập nghĩa vụ quân sự") {
             beforeEach {
                 viewModel = InputInfoViewModel()
             }
 
-            it("Hết tuổi, xém cận") {
-                viewModel.age = 29
-                viewModel.nearsightedness = 1.4
+            /// Các case cơ bản
+            it("Chưa đủ tuổi, cận") {
+                viewModel.age = 17
+                viewModel.nearsightedness = 1.5
+                expect(viewModel.validInfo()) == false
+            }
+
+            it("Đủ tuổi, cận") {
+                viewModel.age = 18
+                viewModel.nearsightedness = 1.5
+                expect(viewModel.validInfo()) == false
+            }
+
+            it("Xém quá tuổi, cận") {
+                viewModel.age = 27
+                viewModel.nearsightedness = 1.5
+                expect(viewModel.validInfo()) == false
+            }
+
+            it("Quá tuổi, cận") {
+                viewModel.age = 28
+                viewModel.nearsightedness = 1.5
                 expect(viewModel.validInfo()) == false
             }
 
             it("Chưa đủ tuổi, xém cận") {
-                viewModel.age = 16
+                viewModel.age = 17
                 viewModel.nearsightedness = 1.4
                 expect(viewModel.validInfo()) == false
             }
 
-            it("Xém hết tuổi, cận") {
-                viewModel.age = 27
-                viewModel.nearsightedness = 1.6
+            it("Hết tuổi, xém cận") {
+                viewModel.age = 28
+                viewModel.nearsightedness = 1.4
+                expect(viewModel.validInfo()) == false
+            }
+
+            /// Các case bất kỳ
+            it("Đủ tuổi, bị cận") {
+                viewModel.age = 23
+                viewModel.nearsightedness = 3
+                expect(viewModel.validInfo()) == false
+            }
+
+            it("Chưa đủ tuổi, cận") {
+                viewModel.age = 15
+                viewModel.nearsightedness = 3
                 expect(viewModel.validInfo()) == false
             }
 
@@ -73,6 +129,5 @@ final class InputInfoViewModelTest: QuickSpec {
                 viewModel = nil
             }
         }
-
     }
 }
