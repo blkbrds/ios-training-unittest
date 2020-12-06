@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FA0AFDD257C73CD00A9CCCD /* CatCollectionViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA0AFDC257C73CD00A9CCCD /* CatCollectionViewModelTest.swift */; };
 		8599E0E9EFC5602935F2EEAF /* Pods_DemoUnitTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E037F6D72BB9289AF94ED3F6 /* Pods_DemoUnitTest.framework */; };
 		A0192C9C255E4313002C3B71 /* GetCatSuccess.json in Resources */ = {isa = PBXBuildFile; fileRef = A0192C9B255E4313002C3B71 /* GetCatSuccess.json */; };
 		A0192CA1255ECE57002C3B71 /* RequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0192CA0255ECE57002C3B71 /* RequestSerializer.swift */; };
@@ -56,6 +57,7 @@
 /* Begin PBXFileReference section */
 		29AB8ECA00C67AB5112CF6F1 /* Pods-DemoUnitTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoUnitTestTests.release.xcconfig"; path = "Target Support Files/Pods-DemoUnitTestTests/Pods-DemoUnitTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		394D97A90DF75EC7AF91DE8A /* Pods_DemoUnitTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoUnitTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FA0AFDC257C73CD00A9CCCD /* CatCollectionViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCollectionViewModelTest.swift; sourceTree = "<group>"; };
 		7734777BAA7BC34838C89FC9 /* Pods-DemoUnitTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoUnitTestTests.debug.xcconfig"; path = "Target Support Files/Pods-DemoUnitTestTests/Pods-DemoUnitTestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7D5D6445EE4E81823E96BF59 /* Pods-DemoUnitTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoUnitTest.debug.xcconfig"; path = "Target Support Files/Pods-DemoUnitTest/Pods-DemoUnitTest.debug.xcconfig"; sourceTree = "<group>"; };
 		A0192C9B255E4313002C3B71 /* GetCatSuccess.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetCatSuccess.json; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 		A0192CA7255FAC31002C3B71 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				3FA0AFDC257C73CD00A9CCCD /* CatCollectionViewModelTest.swift */,
 				A02615742553A80500A5DB60 /* LoginViewModelTest.swift */,
 				A0206B3225762C7600C59F0E /* InputInfoViewModelTest.swift */,
 			);
@@ -210,13 +213,6 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		A0341D60256FF8D800FB5952 /* Controls */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controls;
-			sourceTree = "<group>";
-		};
 		A0A855FA2552A7B700C96037 = {
 			isa = PBXGroup;
 			children = (
@@ -242,7 +238,6 @@
 			children = (
 				A0341D51256FBCBC00FB5952 /* Base */,
 				A0341D50256FBC7B00FB5952 /* Controller */,
-				A0341D60256FF8D800FB5952 /* Controls */,
 				A0A856142552A7BA00C96037 /* Info.plist */,
 				A0D04255255A501D00FD5E3E /* Model */,
 				A0A8560E2552A7BA00C96037 /* Preview Content */,
@@ -532,6 +527,7 @@
 			files = (
 				A02615752553A80500A5DB60 /* LoginViewModelTest.swift in Sources */,
 				A0206B3325762C7600C59F0E /* InputInfoViewModelTest.swift in Sources */,
+				3FA0AFDD257C73CD00A9CCCD /* CatCollectionViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
