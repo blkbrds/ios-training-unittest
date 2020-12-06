@@ -34,7 +34,7 @@ class CatCollectionViewModelTest: QuickSpec {
             }
             describe("Test voi tat ca input kiem tra number in section ") {
                 let cat = Cat()
-                it (" khong co gia tri  ") {
+                it (" khong co gia tri ") {
                     viewModel.cats = []
                     expect(viewModel.numberOfItems(inSection: 0)) == 0
                 }
