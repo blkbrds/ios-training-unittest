@@ -41,6 +41,7 @@
 		A0D04274255A8DB000FD5E3E /* CatCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D04273255A8DB000FD5E3E /* CatCellViewModel.swift */; };
 		A0EEF6732561099E00F137ED /* GetErrorJson.json in Resources */ = {isa = PBXBuildFile; fileRef = A0EEF6722561099E00F137ED /* GetErrorJson.json */; };
 		AF72E7CE9AA19B14E0C8CB53 /* Pods_DemoUnitTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 394D97A90DF75EC7AF91DE8A /* Pods_DemoUnitTestTests.framework */; };
+		F33F381E257D184C00A3CF5B /* CatCollectionViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33F381D257D184C00A3CF5B /* CatCollectionViewModelTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,8 @@
 		A0EEF6722561099E00F137ED /* GetErrorJson.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetErrorJson.json; sourceTree = "<group>"; };
 		C4D23EC61BDE5D3BD46B1954 /* Pods-DemoUnitTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoUnitTest.release.xcconfig"; path = "Target Support Files/Pods-DemoUnitTest/Pods-DemoUnitTest.release.xcconfig"; sourceTree = "<group>"; };
 		E037F6D72BB9289AF94ED3F6 /* Pods_DemoUnitTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoUnitTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F33F37F3257D13E100A3CF5B /* CatCollectionViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCollectionViewModelTest.swift; sourceTree = "<group>"; };
+		F33F381D257D184C00A3CF5B /* CatCollectionViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCollectionViewModelTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,7 +278,9 @@
 				A0D04249255A344F00FD5E3E /* CatCollectionViewController.swift */,
 				A0D0424A255A344F00FD5E3E /* CatCollectionViewController.xib */,
 				A0D04271255A884900FD5E3E /* CatCollectionViewModel.swift */,
+				F33F381D257D184C00A3CF5B /* CatCollectionViewModelTest.swift */,
 				A0D0425E255A7C6400FD5E3E /* Cell */,
+				F33F37F3257D13E100A3CF5B /* CatCollectionViewModelTest.swift */,
 			);
 			path = CatCollection;
 			sourceTree = "<group>";
@@ -532,6 +537,7 @@
 			files = (
 				A02615752553A80500A5DB60 /* LoginViewModelTest.swift in Sources */,
 				A0206B3325762C7600C59F0E /* InputInfoViewModelTest.swift in Sources */,
+				F33F381E257D184C00A3CF5B /* CatCollectionViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
