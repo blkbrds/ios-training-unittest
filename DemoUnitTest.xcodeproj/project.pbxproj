@@ -41,6 +41,7 @@
 		A0D04274255A8DB000FD5E3E /* CatCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D04273255A8DB000FD5E3E /* CatCellViewModel.swift */; };
 		A0EEF6732561099E00F137ED /* GetErrorJson.json in Resources */ = {isa = PBXBuildFile; fileRef = A0EEF6722561099E00F137ED /* GetErrorJson.json */; };
 		AF72E7CE9AA19B14E0C8CB53 /* Pods_DemoUnitTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 394D97A90DF75EC7AF91DE8A /* Pods_DemoUnitTestTests.framework */; };
+		BFF8CB17257E2350005C3C18 /* TestCatCollectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF8CB16257E2350005C3C18 /* TestCatCollectionTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		A0D04271255A884900FD5E3E /* CatCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCollectionViewModel.swift; sourceTree = "<group>"; };
 		A0D04273255A8DB000FD5E3E /* CatCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCellViewModel.swift; sourceTree = "<group>"; };
 		A0EEF6722561099E00F137ED /* GetErrorJson.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetErrorJson.json; sourceTree = "<group>"; };
+		BFF8CB16257E2350005C3C18 /* TestCatCollectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCatCollectionTest.swift; sourceTree = "<group>"; };
 		C4D23EC61BDE5D3BD46B1954 /* Pods-DemoUnitTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoUnitTest.release.xcconfig"; path = "Target Support Files/Pods-DemoUnitTest/Pods-DemoUnitTest.release.xcconfig"; sourceTree = "<group>"; };
 		E037F6D72BB9289AF94ED3F6 /* Pods_DemoUnitTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoUnitTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -265,6 +267,7 @@
 				A0192CA7255FAC31002C3B71 /* ViewModel */,
 				A0192C99255E1F1E002C3B71 /* FakeData */,
 				A0A8561F2552A7BA00C96037 /* Info.plist */,
+				BFF8CB16257E2350005C3C18 /* TestCatCollectionTest.swift */,
 			);
 			path = DemoUnitTestTests;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A02615752553A80500A5DB60 /* LoginViewModelTest.swift in Sources */,
+				BFF8CB17257E2350005C3C18 /* TestCatCollectionTest.swift in Sources */,
 				A0206B3325762C7600C59F0E /* InputInfoViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
