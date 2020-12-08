@@ -21,11 +21,13 @@ final class CatCollectionTest: QuickSpec {
             beforeEach() {
                 viewModel = CatCollectionViewModel()
             }
+            
             describe("") {
                 it("") {
                     expect(viewModel.numberOfSections()) == 1
                 }
             }
+            
             describe("") {
                 it("Value") {
                     viewModel.cats = [Cat()]
@@ -60,8 +62,6 @@ final class CatCollectionTest: QuickSpec {
             afterEach {
                 viewModel = nil
             }
-
         }
-
     }
 }
