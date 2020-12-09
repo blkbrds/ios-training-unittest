@@ -18,12 +18,12 @@ class CatCollectionViewModelTest: QuickSpec {
     override func spec() {
         var viewModel: CatCollectionViewModel!
         let dummyTime = DispatchTimeInterval.seconds(15)
-        var data: [Cat]!
+        var datas: [Cat]!
         
         context("Test call api") {
             beforeEach() {
                 viewModel = CatCollectionViewModel()
-                data = []
+                datas = []
             }
             
             it("Get success response") {
@@ -54,7 +54,7 @@ class CatCollectionViewModelTest: QuickSpec {
         context("Test numberOfSections") {
             beforeEach() {
                 viewModel = CatCollectionViewModel()
-                data = []
+                datas = []
             }
             
             describe("Test với tất cả trường hợp") {
@@ -68,7 +68,7 @@ class CatCollectionViewModelTest: QuickSpec {
                         viewModel.getCats { result in
                             switch result {
                             case .success(let cats):
-                                data = cats
+                                datas = cats
                             case .failure(_):
                                 break
                             }
@@ -86,12 +86,12 @@ class CatCollectionViewModelTest: QuickSpec {
         context("Test numberOfItems") {
             beforeEach() {
                 viewModel = CatCollectionViewModel()
-                data = []
+                datas = []
             }
             
             describe("Test với tất cả trường hợp") {
                 it("Mảng cats rỗng") {
-                    expect(viewModel.numberOfItems(inSection: 0)).to(equal(data.count))
+                    expect(viewModel.numberOfItems(inSection: 0)).to(equal(datas.count))
                 }
                 
                 it("Mảng cats có giá trị") {
@@ -100,11 +100,11 @@ class CatCollectionViewModelTest: QuickSpec {
                         viewModel.getCats { result in
                             switch result {
                             case .success(let cats):
-                                data = cats
+                                datas = cats
                             case .failure(_):
                                 break
                             }
-                            expect(viewModel.numberOfItems(inSection: 0)).to(equal(data.count))
+                            expect(viewModel.numberOfItems(inSection: 0)).to(equal(datas.count))
                             done()
                         }
                     }
@@ -119,7 +119,7 @@ class CatCollectionViewModelTest: QuickSpec {
         context("Test viewModelForItem") {
             beforeEach() {
                 viewModel = CatCollectionViewModel()
-                data = []
+                datas = []
             }
             
             describe("Test với tất cả trường hợp") {
@@ -135,7 +135,7 @@ class CatCollectionViewModelTest: QuickSpec {
                         viewModel.getCats { result in
                             switch result {
                             case .success(let cats):
-                                data = cats
+                                datas = cats
                             case .failure(_):
                                 break
                             }
@@ -154,12 +154,12 @@ class CatCollectionViewModelTest: QuickSpec {
                         viewModel.getCats { result in
                             switch result {
                             case .success(let cats):
-                                data = cats
+                                datas = cats
                             case .failure(_):
                                 break
                             }
                             expect {
-                                try viewModel.viewModelForItem(at: IndexPath(row: data.count, section: 0)) as CatCellViewModel
+                                try viewModel.viewModelForItem(at: IndexPath(row: datas.count, section: 0)) as CatCellViewModel
                             }.to(throwError(Errors.indexOutOfBound))
                             done()
                         }
@@ -172,11 +172,11 @@ class CatCollectionViewModelTest: QuickSpec {
                         viewModel.getCats { result in
                             switch result {
                             case .success(let cats):
-                                data = cats
+                                datas = cats
                             case .failure(_):
                                 break
                             }
-                            expect(data[30].id).toNot(equal(""))
+                            expect(datas[30].id).toNot(equal(""))
                             done()
                         }
                     }
