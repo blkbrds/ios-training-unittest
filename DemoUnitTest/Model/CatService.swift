@@ -40,7 +40,7 @@ final class CatService {
                 switch result {
                 case .success(let value):
                     guard let json = value as? JSArray,
-                    let cats = Mapper<Cat>().mapArray(JSONObject: json)else {
+                    let cats = Mapper<Cat>().mapArray(JSONObject: json) else {
                             completion(.failure(Api.Error.json))
                             return
                     }

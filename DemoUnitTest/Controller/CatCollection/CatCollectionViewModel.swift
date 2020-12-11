@@ -29,7 +29,7 @@ final class CatCollectionViewModel: ViewModel {
 
     func getCats(completion: @escaping APICompletion) {
         let params = CatParams(attachBreed: 0, page: nil, limit: nil)
-        CatService.getCatImages(params: params) { [weak self] result in
+        _ = CatService.getCatImages(params: params) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .success(let cats):
