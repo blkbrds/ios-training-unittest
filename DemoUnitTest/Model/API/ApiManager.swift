@@ -17,6 +17,15 @@ typealias JSArray = [JSObject]
 enum APIResult {
     case success
     case failure(Error)
+    
+    var isSuccess: Bool {
+        switch self {
+        case .success:
+            return true
+        default:
+            return false
+        }
+    }
 }
 
 let api = ApiManager()

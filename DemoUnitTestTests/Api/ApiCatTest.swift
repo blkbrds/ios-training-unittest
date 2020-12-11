@@ -31,9 +31,6 @@ final class ApiCatTest: QuickSpec {
                 
                 waitUntil(timeout: .seconds(15)) { (done) in
                     CatService.getCatImages(params: params) { (result) in
-                        if case .success(let cats) = result {
-                            print("AAA", cats)
-                        }
                         expect(result.isSuccess) == true
                         done()
                     }
@@ -51,11 +48,7 @@ final class ApiCatTest: QuickSpec {
                 })
                 
                 waitUntil(timeout: .seconds(15)) { (done) in
-                    CatService.getCatImages(params: params) { (result) in
-                        if case .failure = result {
-                            print("AAA failure")
-                        }
-                        expect(result.isFailure) == true
+                    CatService.getCatImages(params: params) { (result) in                     expect(result.isFailure) == true
                         done()
                     }
                 }
@@ -70,12 +63,9 @@ final class ApiCatTest: QuickSpec {
                     }
                     return HTTPStubsResponse()
                 })
-
+                
                 waitUntil(timeout: .seconds(15)) { (done) in
                     CatService.getCatImages(params: params) { (result) in
-                        if case .success(let cats) = result {
-                            print("GetError", cats)
-                        }
                         expect(result.isFailure) == true
                         done()
                     }
