@@ -19,7 +19,6 @@ class ApiCatTest: QuickSpec {
         // MARK: - Test call api
         context("Test call api") {
             it("Get success response") {
-                //                stub(condition: isHost(Api.Path.baseURL.host), response:    )
                 stub(condition: isMethodGET()) { _ in
                     if let path = OHPathForFile("GetCatSuccess.json", type(of: self)) {
                         return HTTPStubsResponse(fileAtPath: path, statusCode: 200, headers: nil)
