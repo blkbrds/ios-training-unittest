@@ -6,62 +6,149 @@
 //  Copyright © 2020 thuynguyen. All rights reserved.
 //
 
-import XCTest
 import Nimble
 import Quick
+import OHHTTPStubs
 
 @testable import DemoUnitTest
 
 final class CatCollectionViewModelTest: QuickSpec {
 
     override func spec() {
+
         var viewModel: CatCollectionViewModel!
 
-        context("test table view") {
-            beforeEach() {
+        context("When Call API success") {
+            beforeEach {
                 viewModel = CatCollectionViewModel()
-            }
-            describe("table view extension") {
-                it("number of sections return 1") {
-                    expect(viewModel.numberOfSections()) == 1
-                }
-
-                it("number of items when items is empty") {
-                    viewModel.cats = []
-                    expect(viewModel.numberOfItems(inSection: 0)) == 0
-                }
-
-                it("number of items when items has one value") {
-                    viewModel.cats = [Cat()]
-                    expect(viewModel.numberOfItems(inSection: 0)) == 1
-                }
-
-                it ("view model for item throw exception") {
-                    let indexPath = IndexPath(row: 0, section: 0)
-                    viewModel.cats = []
-                    expect{ try viewModel.viewModelForItem(at: indexPath)}.to(throwError())
-                }
-
-                it ("view model for item no throw exception when row less than number of cats") {
-                    let indexPath = IndexPath(row: 0, section: 0)
-                    viewModel.cats = [Cat()]
-                    expect{ try viewModel.viewModelForItem(at: indexPath)}.toNot(throwError())
-                }
-
-                it ("view model for item return value when have view model of cat cell") {
-                    let indexPath = IndexPath(row: 0, section: 0)
-                    let cat1 = Cat()
-                    cat1.id = "1"
-                    cat1.name = "cat1"
-                    viewModel.cats = [cat1]
-                    let value = try viewModel.viewModelForItem(at: indexPath)
-                    expect(value).to(beAnInstanceOf(CatCellViewModel.self))
+                stub(condition: isMethodGET()) { _ in
+                    if let path = OHPathForFile("GetCatSuccess.json", type(of: self)) {
+                        return HTTPStubsResponse(fileAtPath: path, statusCode: 200, headers: nil)
+                    }
+                    return HTTPStubsResponse()
                 }
             }
-            afterEach {
-                viewModel = nil
+
+            it("Get data from API"){
+                waitUntil(timeout: DispatchTimeInterval.seconds(15)) {
+                    done in
+                    viewModel.getCats { result in
+                        switch result {
+                        case .success:
+                            expect(viewModel.cats.count) == 4
+                        case .failure:
+                            fail("must return success")
+                        }
+                        done()
+                    }
+                }
+            }
+
+            it("number of items return true") {
+                waitUntil(timeout: DispatchTimeInterval.seconds(15)) {
+                    done in
+                    viewModel.getCats { result in
+                        switch result {
+                        case .success:
+                            expect(viewModel.numberOfItems(inSection: 0)) == 4
+                        case .failure:
+                            fail("Must return success")
+                        }
+                        done()
+                    }
+                }
+            }
+
+            it("viewmodel for items return success") {
+                waitUntil(timeout: DispatchTimeInterval.seconds(15)) {
+                    done in
+                    viewModel.getCats { result in
+                        switch result {
+                        case .success:
+                            expect {
+                                try viewModel.viewModelForItem(at: IndexPath(row: 0, section: 0)) as CatCellViewModel}.to(beAnInstanceOf(CatCellViewModel.self))
+                        case .failure:
+                            fail("must return success")
+                        }
+                        done()
+                    }
+                }
+            }
+
+            it("viewmodel for items return success") {
+                waitUntil(timeout: DispatchTimeInterval.seconds(15)) {
+                    done in
+                    viewModel.getCats { result in
+                        switch result {
+                        case .success:
+                            expect {
+                                try viewModel.viewModelForItem(at: IndexPath(row: 7, section: 0)) as CatCellViewModel}.to(throwError(Errors.indexOutOfBound))
+                        case .failure:
+                            fail("must return success")
+                        }
+                        done()
+                    }
+                }
+            }
+        }
+
+        context("when call api failure") {
+            beforeEach {
+                viewModel = CatCollectionViewModel()
+                stub(condition: isMethodGET()) { _ in
+                    if let path = OHPathForFile("GetDataFailure.json", type(of: self)) {
+                        return HTTPStubsResponse(fileAtPath: path, statusCode: 400, headers: nil)
+                    }
+                    return HTTPStubsResponse()
+                }
+            }
+
+            it("get api getCats() return failure") {
+                waitUntil(timeout: DispatchTimeInterval.seconds(15)) {
+                    done in
+                    viewModel.getCats { result in
+                        switch result {
+                        case .success:
+                            fail("must return failure")
+                        case .failure(let error):
+                            expect(error.code) == Api.Error.apiKey.code
+                            expect(error.localizedDescription) == Api.Error.apiKey.localizedDescription
+                        }
+                        done()
+                    }
+                }
+            }
+
+            it("number of items return failure") {
+                waitUntil(timeout: DispatchTimeInterval.seconds(15)) {
+                    done in
+                    viewModel.getCats { result in
+                        switch result {
+                        case .success:
+                            fail("must return failure")
+                        case .failure:
+                            expect(viewModel.numberOfItems(inSection: 0)) == 0
+                        }
+                        done()
+                    }
+                }
+            }
+
+            it("viewModel for items return failure") {
+                waitUntil(timeout: DispatchTimeInterval.seconds(15)) {
+                    done in
+                    viewModel.getCats { result in
+                        switch result {
+                        case .success:
+                            fail("must return failure")
+                        case .failure:
+                            expect {
+                                try viewModel.viewModelForItem(at: IndexPath(row: 0, section: 0)) as CatCellViewModel}.to(throwError(Errors.indexOutOfBound))
+                        }
+                        done()
+                    }
+                }
             }
         }
     }
 }
-
