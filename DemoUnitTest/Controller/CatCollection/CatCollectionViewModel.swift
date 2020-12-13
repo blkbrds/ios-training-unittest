@@ -45,10 +45,6 @@ final class CatCollectionViewModel: ViewModel {
 // MARK: - ViewModel
 extension CatCollectionViewModel {
 
-    func numberOfSections() -> Int {
-        return 1
-    }
-
     func numberOfItems(inSection section: Int) -> Int {
         return cats.count
     }
