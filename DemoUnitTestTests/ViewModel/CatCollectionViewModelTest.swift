@@ -9,6 +9,7 @@
 import XCTest
 import Nimble
 import Quick
+import OHHTTPStubs
 
 @testable import DemoUnitTest
 
@@ -63,11 +64,72 @@ class CatCollectionViewModelTest: QuickSpec {
                     }.to(beAnInstanceOf(CatCellViewModel.self))
                 }
             }
+        }
+        
+        describe("Test func `getCats` ") {
+            beforeEach() {
+                viewModel = CatCollectionViewModel()
+            }
+            context("Get success response ") {
+                it("Return 200") {
+                    stub(condition: isHost(Api.Path.baseURL.host)) { (_) -> HTTPStubsResponse in
+                        if let path = OHPathForFile("GetCatSuccess.json", type(of: self)) {
+                            return HTTPStubsResponse(fileAtPath: path, statusCode: 200, headers: nil)
+                        }
+                        return HTTPStubsResponse()
+                    }
+                    waitUntil(timeout: DispatchTimeInterval.seconds(15)) { done in
+                        viewModel.getCats { (result) in
+                            expect(viewModel.cats.count) == 2
+                            done()
+                        }
+                    }
+                }
+            }
+            context("Get failure response") {
+                it("Return 400") {
+                    stub(condition: isHost(Api.Path.baseURL.host)) { (_) -> HTTPStubsResponse in
+                        if let path = OHPathForFile("GetDataFailure.json", type(of: self)) {
+                            return HTTPStubsResponse(fileAtPath: path, statusCode: 400, headers: nil)
+                        }
+                        return HTTPStubsResponse()
+                    }
+                    waitUntil(timeout: DispatchTimeInterval.seconds(15)) { done in
+                        viewModel.getCats { (result) in
+                            switch result {
+                            case .success:
+                                fail("API must return failure")
+                            case .failure(let error):
+                                expect(error.code) == 400
+                            }
+                            done()
+                        }
+                    }
+                }
+                it("Return error json") {
+                    stub(condition: isHost(Api.Path.baseURL.host)) { (_) -> HTTPStubsResponse in
+                        if let path = OHPathForFile("GetErrorJson.json", type(of: self)) {
+                            return HTTPStubsResponse(fileAtPath: path, statusCode: 204, headers: nil)
+                        }
+                        return HTTPStubsResponse()
+                    }
+                    waitUntil(timeout: DispatchTimeInterval.seconds(15)) { done in
+                        viewModel.getCats { (result) in
+                            switch result {
+                            case .success:
+                                fail("API must return failure")
+                            case .failure(let error):
+                                expect(error.code) == 3840
+                            }
+                            done()
+                        }
+                    }
+                }
+            }
+            
             afterEach {
                 viewModel = nil
             }
-            
         }
     }
 }
-
