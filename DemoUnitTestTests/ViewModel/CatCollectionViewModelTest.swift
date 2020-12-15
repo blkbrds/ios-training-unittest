@@ -9,6 +9,8 @@
 import XCTest
 import Nimble
 import Quick
+import OHHTTPStubs
+import Alamofire
 
 @testable import DemoUnitTest
 
@@ -68,5 +70,106 @@ class CatCollectionViewModelTest: QuickSpec {
                 viewModel = nil
             }
         }
+
+        context("call api") {
+            beforeEach {
+                viewModel = CatCollectionViewModel()
+            }
+            it("NoEmpty") {
+                waitUntil(timeout: DispatchTimeInterval.seconds(15)) { done in
+                    viewModel.getCats { (result) in
+                        switch result {
+                        case .success:
+                            expect(viewModel.numberOfItems(inSection: 0)) > 0
+                        case .failure:
+                            break
+                        }
+                        done()
+                    }
+                }
+            }
+            it("Empty") {
+                waitUntil(timeout: DispatchTimeInterval.seconds(15)) { done in
+                    viewModel.getCats { (result) in
+                        switch result {
+                        case .success:
+                            expect(viewModel.numberOfItems(inSection: 0)) == 0
+                        case .failure:
+                            break
+                        }
+                        done()
+                    }
+                }
+            }
+            it("") {
+                waitUntil(timeout: DispatchTimeInterval.seconds(15)) { done in
+                    viewModel.getCats { result in
+                        switch result {
+                        case .success:
+                            let indexPath = IndexPath(row: 0, section: 0)
+                            expect({
+                                try viewModel.viewModelForItem(at: indexPath)
+                            }).notTo(throwError())
+                        case .failure: break
+                        }
+                        done()
+                    }
+                }
+            }
+            it("index out of bound") {
+                waitUntil(timeout: DispatchTimeInterval.seconds(15)) { done in
+                    viewModel.getCats { result in
+                        switch result {
+                        case .success:
+                            let indexPath = IndexPath(row: viewModel.cats.count, section: 0)
+                            expect({
+                                try viewModel.viewModelForItem(at: indexPath)
+                            }).to(throwError(Errors.indexOutOfBound))
+                        case .failure: break
+                    }
+                    done()
+                }
+            }
+        }
+        afterEach {
+            viewModel = nil
+        }
     }
+
+    context("failure") {
+        beforeEach {
+            viewModel = CatCollectionViewModel()
+        }
+        it("Failure") {
+            waitUntil(timeout: DispatchTimeInterval.seconds(15)) { done in
+                viewModel.getCats { (result) in
+                    switch result {
+                    case .success: break
+                    case.failure:
+                        expect(viewModel.numberOfItems(inSection: 0)) == 0
+                    }
+                    done()
+                }
+            }
+        }
+
+        it("Failure") {
+            waitUntil(timeout: DispatchTimeInterval.seconds(15)) { done in
+                viewModel.getCats { (result) in
+                    switch result {
+                    case .success:
+                        fail("API must return Failure")
+                    case .failure(let error):
+                        expect(error.code) == Api.Error.json.code
+                    }
+                    done()
+                }
+            }
+        }
+        
+        afterEach {
+            viewModel = nil
+        }
+    }
+}
 }

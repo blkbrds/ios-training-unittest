@@ -39,6 +39,7 @@ final class CatService {
             Async.main {
                 switch result {
                 case .success(let value):
+                    print("+++++\(value)")
                     guard let json = value as? JSArray,
                     let cats = Mapper<Cat>().mapArray(JSONObject: json)else {
                             completion(.failure(Api.Error.json))
