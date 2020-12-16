@@ -18,166 +18,155 @@ class CatCollectionViewModelTest: QuickSpec {
     override func spec() {
         var viewModel: CatCollectionViewModel!
         let dummyTime = DispatchTimeInterval.seconds(15)
-        var datas: [Cat]!
         
-        context("Test call api") {
+        context("Call api success") {
             beforeEach() {
                 viewModel = CatCollectionViewModel()
-                datas = []
-            }
-            
-            it("Get success response") {
-                waitUntil(timeout: dummyTime) {
-                    done in
-                    viewModel.getCats { result in
-                        expect(result.isSuccess) == true
-                        done()
+                stub(condition: isHost(Api.Path.baseURL.host), response: { _ in
+                    if let path = OHPathForFile("GetCatSuccess.json", type(of: self)){
+                        return HTTPStubsResponse(fileAtPath: path, statusCode: 200, headers: nil)
                     }
-                }
+                    return HTTPStubsResponse()
+                    
+                })
             }
             
-            it("Get failure response") {
-                waitUntil(timeout: dummyTime) {
-                    done in
-                    viewModel.getCats { result in
-                        expect(result.isFailure) == true
-                        done()
-                    }
-                }
-            }
-            
-            afterEach {
-                viewModel = nil
-            }
-        }
-        
-        context("Test numberOfSections") {
-            beforeEach() {
-                viewModel = CatCollectionViewModel()
-                datas = []
-            }
-            
-            describe("Test với tất cả trường hợp") {
-                it("Mảng cats rỗng") {
-                    expect(viewModel.numberOfSections) == 1
-                }
-                
+            describe("Test func numberOfSections") {
                 it("Mảng cats có giá trị") {
                     waitUntil(timeout: dummyTime) {
                         done in
                         viewModel.getCats { result in
                             switch result {
-                            case .success(let cats):
-                                datas = cats
+                            case .success:
+                                expect(viewModel.numberOfSections) == 1
                             case .failure(_):
                                 break
                             }
-                            expect(viewModel.numberOfSections) == 1
                             done()
                         }
                     }
                 }
-                
-                afterEach {
-                    viewModel = nil
-                }
-            }
-        }
-        context("Test numberOfItems") {
-            beforeEach() {
-                viewModel = CatCollectionViewModel()
-                datas = []
             }
             
-            describe("Test với tất cả trường hợp") {
-                it("Mảng cats rỗng") {
-                    expect(viewModel.numberOfItems(inSection: 0)).to(equal(datas.count))
-                }
-                
+            describe("Test func numberOfItems") {
                 it("Mảng cats có giá trị") {
                     waitUntil(timeout: dummyTime) {
                         done in
                         viewModel.getCats { result in
                             switch result {
-                            case .success(let cats):
-                                datas = cats
+                            case .success:
+                                expect(viewModel.numberOfItems(inSection: 0)).to(equal(2))
                             case .failure(_):
                                 break
                             }
-                            expect(viewModel.numberOfItems(inSection: 0)).to(equal(datas.count))
                             done()
                         }
                     }
                 }
                 
-                afterEach {
-                    viewModel = nil
+                describe("Test func viewModelForItem") {
+                    it("Mảng cats có giá trị") {
+                        waitUntil(timeout: dummyTime) {
+                            done in
+                            viewModel.getCats { result in
+                                switch result {
+                                case .success:
+                                    expect {
+                                        try viewModel.viewModelForItem(at: IndexPath(row:1 , section: 0)) as CatCellViewModel
+                                    }.to(beAnInstanceOf(CatCellViewModel.self))
+                                case .failure(_):
+                                    break
+                                }
+                                done()
+                            }
+                            
+                        }
+                    }
+                    
+                    it("Mảng cats có giá trị") {
+                        waitUntil(timeout: dummyTime) {
+                            done in
+                            viewModel.getCats { result in
+                                switch result {
+                                case .success:
+                                    expect {
+                                        try viewModel.viewModelForItem(at: IndexPath(row: 2, section: 0)) as CatCellViewModel
+                                    }.to(throwError(Errors.indexOutOfBound))
+                                case .failure(_):
+                                    break
+                                }
+                                done()
+                            }
+                        }
+                    }
+                    
+                    afterEach {
+                        viewModel = nil
+                    }
                 }
-            }
-        }
-        
-        context("Test viewModelForItem") {
-            beforeEach() {
-                viewModel = CatCollectionViewModel()
-                datas = []
             }
             
-            describe("Test với tất cả trường hợp") {
-                it("Mảng cats rỗng") {
-                    expect {
-                        try viewModel.viewModelForItem(at: IndexPath(row: 0, section: 0)) as CatCellViewModel
-                    }.to(throwError(Errors.indexOutOfBound))
-                }
-                
-                it("Mảng cats có giá trị") {
-                    waitUntil(timeout: dummyTime) {
-                        done in
-                        viewModel.getCats { result in
-                            switch result {
-                            case .success(let cats):
-                                datas = cats
-                            case .failure(_):
-                                break
-                            }
-                            expect {
-                                try viewModel.viewModelForItem(at: IndexPath(row: 4, section: 0)) as CatCellViewModel
-                            }.to(beAnInstanceOf(CatCellViewModel.self))
-                            done()
+            context("Call api failure") {
+                beforeEach() {
+                    viewModel = CatCollectionViewModel()
+                    stub(condition: isHost(Api.Path.baseURL.host), response: { _ in
+                        if let path = OHPathForFile("GetDataFailure.json", type(of: self)){
+                            return HTTPStubsResponse(fileAtPath: path, statusCode: 400, headers: nil)
                         }
+                        return HTTPStubsResponse()
                         
-                    }
+                    })
                 }
                 
-                it("Mảng cats có giá trị") {
-                    waitUntil(timeout: dummyTime) {
-                        done in
-                        viewModel.getCats { result in
-                            switch result {
-                            case .success(let cats):
-                                datas = cats
-                            case .failure(_):
-                                break
+                describe("Test func numberOfSections") {
+                    it("Mảng cats không giá trị") {
+                        waitUntil(timeout: dummyTime) {
+                            done in
+                            viewModel.getCats { result in
+                                switch result {
+                                case .success:
+                                    break
+                                case .failure(_):
+                                    expect(viewModel.numberOfSections) == 1
+                                }
+                                done()
                             }
-                            expect {
-                                try viewModel.viewModelForItem(at: IndexPath(row: datas.count, section: 0)) as CatCellViewModel
-                            }.to(throwError(Errors.indexOutOfBound))
-                            done()
                         }
                     }
                 }
                 
-                it("Các giá trị trong mảng cats") {
-                    waitUntil(timeout: dummyTime) {
-                        done in
-                        viewModel.getCats { result in
-                            switch result {
-                            case .success(let cats):
-                                datas = cats
-                            case .failure(_):
-                                break
+                describe("Test func numberOfItems") {
+                    it("Mảng cats không giá trị") {
+                        waitUntil(timeout: dummyTime) {
+                            done in
+                            viewModel.getCats { result in
+                                switch result {
+                                case .success:
+                                    break
+                                case .failure(_):
+                                    expect(viewModel.numberOfItems(inSection: 0)).to(equal(0))
+                                }
+                                done()
                             }
-                            expect(datas[30].id).toNot(equal(""))
-                            done()
+                        }
+                    }
+                }
+                
+                describe("Test func viewModelForItem") {
+                    it("Mảng cats không giá trị") {
+                        waitUntil(timeout: dummyTime) {
+                            done in
+                            viewModel.getCats { result in
+                                switch result {
+                                case .success:
+                                    break
+                                case .failure(_):
+                                    expect {
+                                        try viewModel.viewModelForItem(at: IndexPath(row: 0, section: 0)) as CatCellViewModel
+                                    }.to(throwError(Errors.indexOutOfBound))
+                                }
+                                done()
+                            }
                         }
                     }
                 }
