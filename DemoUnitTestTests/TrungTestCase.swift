@@ -37,7 +37,7 @@ class TrungTestCase: QuickSpec {
             it ("Cận, đủ tuổi") {
                 viewModel.age = 18
                 viewModel.nearsightedness = 1.5
-                expect(viewModel.validInfo()) == true
+                expect(viewModel.validInfo()) == false
             }
             afterEach {
                 viewModel = nil

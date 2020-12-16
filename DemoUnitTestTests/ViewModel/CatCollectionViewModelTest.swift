@@ -16,81 +16,134 @@ final class CatCollectionUnitTestCase: QuickSpec {
 
     override func spec() {
         var viewModel: CatCollectionViewModel!
+        var dataCats: [Cat]!
 
-        context("number of section") {
+        context("Test Call APi") {
             beforeEach {
                 viewModel = CatCollectionViewModel()
+                dataCats = []
             }
-
-            describe("Number of sections") {
-                it("Equal 1") {
-                    expect(viewModel.numberOfSections()) == 1
-                }
-            }
-            describe("Number of items in section") {
-                it("No value") {
-                    viewModel.cats = []
-                    expect(viewModel.numberOfItems(inSection: 0)) == 0
-                }
-
-                it("Has value") {
-                    let cat: Cat = Cat()
-                    viewModel.cats = [cat, cat]
-                    expect(viewModel.numberOfItems(inSection: 0)) > 0
-                }
-            }
-            describe("FUNC TEST FOR VIEWMODEL") {
-                it("Arrays haven't Value") {
-                    viewModel.cats = []
-                    expect {
-                        try viewModel.viewModelForItem(at: IndexPath(row: 0, section: 0)) as CatCellViewModel
-                    }.to(throwError(Errors.indexOutOfBound))
-                }
-                it("Cats haven't Value") {
-                    let cat: Cat = Cat()
-                    viewModel.cats = [cat]
-                    expect {
-                        try viewModel.viewModelForItem(at: IndexPath(row: 0, section: 0)) as CatCellViewModel
-                    }.to(beAnInstanceOf(CatCellViewModel.self))
-                }
-                it("IndexPath.row > Cats") {
-                    let cat: Cat = Cat()
-                    viewModel.cats = [cat, cat]
-                    expect {
-                        try viewModel.viewModelForItem(at: IndexPath(row: 4, section: 0)) as CatCellViewModel
-                    }.to(throwError(Errors.indexOutOfBound))
-                }
-                it("IndexPath.row < Cats") {
-                    let cat: Cat = Cat()
-                    viewModel.cats = [cat, cat, cat, cat]
-                    expect {
-                        try viewModel.viewModelForItem(at: IndexPath(row: 2, section: 0)) as CatCellViewModel
-                    }.toNot(beNil())
-                }
-                it("IndexPath.row == Cats") {
-                    let cat: Cat = Cat()
-                    viewModel.cats = [cat, cat]
-                    expect {
-                        try viewModel.viewModelForItem(at: IndexPath(row: 2, section: 0)) as CatCellViewModel
-                    }.to(throwError(Errors.indexOutOfBound))
-                }
-                describe("") {
-                    it("Test each cat object") {
-                        let firstCat: Cat = Cat()
-                        firstCat.name = "Tam"
-                        let secondCat: Cat = Cat()
-                        secondCat.name = "Trin"
-                        viewModel.cats.append(firstCat)
-                        viewModel.cats.append(secondCat)
-                        expect(viewModel.cats[0].name) == "Tam"
-                        expect(viewModel.cats[1].name) == "Trin"
+            it ("Get success response") {
+                waitUntil(timeout: DispatchTimeInterval.seconds(10)) { done in
+                    viewModel.getCats{ result in
+                        expect(result.isSuccess) == true
+                        done()
                     }
                 }
             }
+
+            it ("Get failure response") {
+                waitUntil(timeout: DispatchTimeInterval.seconds(10)) { (done) in
+                    viewModel.getCats { (result) in
+                        expect(result.isFailure) == true
+                        done()
+                    }
+                }
+            }
+
             afterEach {
                 viewModel = nil
             }
         }
-    }
 
+        context("Test number of section") {
+            beforeEach {
+                viewModel = CatCollectionViewModel()
+                dataCats = []
+            }
+
+            describe("Number of sections") {
+                it("Array of cat is Empty") {
+                    expect(viewModel.numberOfSections()) == 1
+                }
+                it("Array of cat has Value") {
+                    waitUntil(timeout: DispatchTimeInterval.seconds(10)) { (done) in
+                        viewModel.getCats { (result) in
+                            switch result {
+                            case .success(let cats):
+                                dataCats = cats
+                            case .failure(_):
+                                break
+                            }
+                            expect(viewModel.numberOfSections) == 1
+                            done()
+                        }
+                    }
+                }
+                afterEach {
+                    viewModel = nil
+                }
+            }
+            context("Test Number of Item ") {
+                beforeEach {
+                    viewModel = CatCollectionViewModel()
+                    dataCats = []
+                }
+                describe("Test all Case") {
+                    it("Array of cat is empty") {
+                        expect {
+                            try viewModel.viewModelForItem(at: IndexPath(row: 0, section: 0)) as CatCellViewModel
+                        }.to(throwError(Errors.indexOutOfBound))
+                    }
+
+                    it("Array of cat has value") {
+                        waitUntil(timeout: DispatchTimeInterval.seconds(10)) {
+                            done in
+                            viewModel.getCats { result in
+                                switch result {
+                                case .success(let cats):
+                                    dataCats = cats
+                                case .failure(_):
+                                    break
+                                }
+                                expect {
+                                    try viewModel.viewModelForItem(at: IndexPath(row: 4, section: 0)) as CatCellViewModel
+                                }.to(beAnInstanceOf(CatCellViewModel.self))
+                                done()
+                            }
+
+                        }
+                    }
+
+                    it("Array of cat has value") {
+                        waitUntil(timeout: DispatchTimeInterval.seconds(10)) {
+                            done in
+                            viewModel.getCats { result in
+                                switch result {
+                                case .success(let cats):
+                                    dataCats = cats
+                                case .failure(_):
+                                    break
+                                }
+                                expect {
+                                    try viewModel.viewModelForItem(at: IndexPath(row: dataCats.count, section: 0)) as CatCellViewModel
+                                }.to(throwError(Errors.indexOutOfBound))
+                                done()
+                            }
+                        }
+                    }
+
+                    it("Value in Array of Cat") {
+                        waitUntil(timeout: DispatchTimeInterval.seconds(10)) {
+                            done in
+                            viewModel.getCats { result in
+                                switch result {
+                                case .success(let cats):
+                                    dataCats = cats
+                                case .failure(_):
+                                    break
+                                }
+                                expect(dataCats[30].id).toNot(equal(""))
+                                done()
+                            }
+                        }
+                    }
+
+                    afterEach {
+                        viewModel = nil
+                    }
+                }
+            }
+        }
+    }
 }
