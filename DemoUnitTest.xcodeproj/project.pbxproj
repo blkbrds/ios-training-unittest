@@ -41,6 +41,7 @@
 		A0D04274255A8DB000FD5E3E /* CatCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D04273255A8DB000FD5E3E /* CatCellViewModel.swift */; };
 		A0EEF6732561099E00F137ED /* GetErrorJson.json in Resources */ = {isa = PBXBuildFile; fileRef = A0EEF6722561099E00F137ED /* GetErrorJson.json */; };
 		AF72E7CE9AA19B14E0C8CB53 /* Pods_DemoUnitTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 394D97A90DF75EC7AF91DE8A /* Pods_DemoUnitTestTests.framework */; };
+		FD55B4012589B3640035DC1C /* ApiCatTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD55B4002589B3640035DC1C /* ApiCatTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		A0EEF6722561099E00F137ED /* GetErrorJson.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetErrorJson.json; sourceTree = "<group>"; };
 		C4D23EC61BDE5D3BD46B1954 /* Pods-DemoUnitTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoUnitTest.release.xcconfig"; path = "Target Support Files/Pods-DemoUnitTest/Pods-DemoUnitTest.release.xcconfig"; sourceTree = "<group>"; };
 		E037F6D72BB9289AF94ED3F6 /* Pods_DemoUnitTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoUnitTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD55B4002589B3640035DC1C /* ApiCatTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCatTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				A0D0425A255A557900FD5E3E /* Error.swift */,
 				A0D0425C255A56BE00FD5E3E /* Api.swift */,
 				A0192CA5255EDB29002C3B71 /* HttpStatus.swift */,
+				FD55B4002589B3640035DC1C /* ApiCatTest.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				A0A8560B2552A7B800C96037 /* ContentView.swift in Sources */,
 				A0206B2F25762A3E00C59F0E /* InputInfoViewModel.swift in Sources */,
 				A0D04272255A884900FD5E3E /* CatCollectionViewModel.swift in Sources */,
+				FD55B4012589B3640035DC1C /* ApiCatTest.swift in Sources */,
 				A0192CA6255EDB29002C3B71 /* HttpStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
