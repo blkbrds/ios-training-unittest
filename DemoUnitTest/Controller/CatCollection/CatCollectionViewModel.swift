@@ -27,14 +27,14 @@ final class CatCollectionViewModel: ViewModel {
 
     var cats: [Cat] = []
 
-    func getCats(completion: @escaping APICompletion) {
+    func getCats(completion: @escaping Completion<[Cat]>) {
         let params = CatParams(attachBreed: 0, page: nil, limit: nil)
         CatService.getCatImages(params: params) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .success(let cats):
                 this.cats = cats
-                completion(.success)
+                completion(.success(cats))
             case .failure(let error):
                 completion(.failure(error))
             }

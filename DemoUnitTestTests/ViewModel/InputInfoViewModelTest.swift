@@ -39,6 +39,41 @@ final class InputInfoViewModelTest: QuickSpec {
                     viewModel.nearsightedness = 1.4
                     expect(viewModel.validInfo()) == true
                 }
+                it ("chưa đủ tuổi, xém cận") {
+                    viewModel.age = 17
+                    viewModel.nearsightedness = 1.4
+                    expect(viewModel.validInfo()) == false
+                }
+
+                it ( "đủ tuổi, xém cận") {
+                    viewModel.age = 18
+                    viewModel.nearsightedness = 1.4
+                    expect(viewModel.validInfo()) == false
+
+                }
+                it ("xém dư tuổi, xém cận") {
+                    viewModel.age = 27
+                    viewModel.nearsightedness = 1.4
+                    expect(viewModel.validInfo()) == false
+
+                }
+                it ( "dư tuổi, xém cận") {
+                    viewModel.age = 28
+                    viewModel.nearsightedness = 1.4
+                    expect(viewModel.validInfo()) == false
+
+                }
+                it ("cận, xém đủ tuổi ") {
+                    viewModel.age = 17
+                    viewModel.nearsightedness = 1.5
+                    expect(viewModel.validInfo()) == false
+
+                }
+                it ( "cận,  đủ tuổi ") {
+                    viewModel.age = 18
+                    viewModel.nearsightedness = 1.5
+                    expect(viewModel.validInfo()) == false
+                }
             }
             afterEach {
                 viewModel = nil
