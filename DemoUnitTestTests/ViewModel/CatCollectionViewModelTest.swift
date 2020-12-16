@@ -32,7 +32,7 @@ class CatCollectionViewModelTest: QuickSpec {
             }
             
             describe("Test func numberOfSections") {
-                it("Mảng cats có giá trị") {
+                it("Test func numbreOfSections api success") {
                     waitUntil(timeout: dummyTime) {
                         done in
                         viewModel.getCats { result in
@@ -49,7 +49,7 @@ class CatCollectionViewModelTest: QuickSpec {
             }
             
             describe("Test func numberOfItems") {
-                it("Mảng cats có giá trị") {
+                it("Test func numberOfItems api success") {
                     waitUntil(timeout: dummyTime) {
                         done in
                         viewModel.getCats { result in
@@ -65,7 +65,7 @@ class CatCollectionViewModelTest: QuickSpec {
                 }
                 
                 describe("Test func viewModelForItem") {
-                    it("Mảng cats có giá trị") {
+                    it("Test func viewModelForItem api success (row = 1))") {
                         waitUntil(timeout: dummyTime) {
                             done in
                             viewModel.getCats { result in
@@ -83,7 +83,7 @@ class CatCollectionViewModelTest: QuickSpec {
                         }
                     }
                     
-                    it("Mảng cats có giá trị") {
+                    it("Test func viewModelForItem api success (row = 2))") {
                         waitUntil(timeout: dummyTime) {
                             done in
                             viewModel.getCats { result in
@@ -119,7 +119,7 @@ class CatCollectionViewModelTest: QuickSpec {
                 }
                 
                 describe("Test func numberOfSections") {
-                    it("Mảng cats không giá trị") {
+                    it("Test func numberOfSections api failure") {
                         waitUntil(timeout: dummyTime) {
                             done in
                             viewModel.getCats { result in
@@ -136,7 +136,7 @@ class CatCollectionViewModelTest: QuickSpec {
                 }
                 
                 describe("Test func numberOfItems") {
-                    it("Mảng cats không giá trị") {
+                    it("Test func numberOfItems api failure") {
                         waitUntil(timeout: dummyTime) {
                             done in
                             viewModel.getCats { result in
@@ -153,7 +153,7 @@ class CatCollectionViewModelTest: QuickSpec {
                 }
                 
                 describe("Test func viewModelForItem") {
-                    it("Mảng cats không giá trị") {
+                    it("Test func viewModelForItem api failure") {
                         waitUntil(timeout: dummyTime) {
                             done in
                             viewModel.getCats { result in
