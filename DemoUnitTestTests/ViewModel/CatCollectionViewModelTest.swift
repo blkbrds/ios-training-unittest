@@ -35,9 +35,8 @@ final class CatCollectionViewModelTest: QuickSpec {
                 
                 waitUntil(timeout: .seconds(15)) { (done) in
                     viewModel.getCats { (result) in
-                        if case .success = result {
-                            expect(viewModel.numberOfItems(inSection: 0)) > 0
-                        }
+                        expect(result.isSuccess).to(beTrue())
+                        expect(viewModel.numberOfItems(inSection: 0)) > 0
                         done()
                     }
                 }
@@ -46,12 +45,11 @@ final class CatCollectionViewModelTest: QuickSpec {
             it("View model for item is instance") {
                 waitUntil(timeout: .seconds(15)) { (done) in
                     viewModel.getCats { (result) in
-                        if case .success = result {
-                            let indexPath = IndexPath(row: 0, section: 0)
-                            expect({
-                                try viewModel.viewModelForItem(at: indexPath)
-                            }).notTo(throwError())
-                        }
+                        expect(result.isSuccess).to(beTrue())
+                        let indexPath = IndexPath(row: 0, section: 0)
+                        expect({
+                            try viewModel.viewModelForItem(at: indexPath)
+                        }).notTo(throwError())
                         done()
                     }
                 }
@@ -60,12 +58,11 @@ final class CatCollectionViewModelTest: QuickSpec {
             it("View model for item: Index out of bound") {
                 waitUntil(timeout: .seconds(15)) { (done) in
                     viewModel.getCats { (result) in
-                        if case .success = result {
-                            let indexPath = IndexPath(row: viewModel.cats.count, section: 0)
-                            expect({
-                                try viewModel.viewModelForItem(at: indexPath)
-                            }).to(throwError(Errors.indexOutOfBound))
-                        }
+                        expect(result.isSuccess).to(beTrue())
+                        let indexPath = IndexPath(row: viewModel.cats.count, section: 0)
+                        expect({
+                            try viewModel.viewModelForItem(at: indexPath)
+                        }).to(throwError(Errors.indexOutOfBound))
                         done()
                     }
                 }
@@ -95,9 +92,8 @@ final class CatCollectionViewModelTest: QuickSpec {
             it("Number of items: Empty") {
                 waitUntil(timeout: .seconds(15)) { (done) in
                     viewModel.getCats { (result) in
-                        if case .failure = result {
-                            expect(viewModel.numberOfItems(inSection: 0)) == 0
-                        }
+                        expect(result.isSuccess).notTo(beTrue())
+                        expect(viewModel.numberOfItems(inSection: 0)) == 0
                         done()
                     }
                 }
@@ -106,12 +102,11 @@ final class CatCollectionViewModelTest: QuickSpec {
             it("View model for item: Index out of bound") {
                 waitUntil(timeout: .seconds(15)) { (done) in
                     viewModel.getCats { (result) in
-                        if case .failure = result {
-                            let indexPath = IndexPath(row: viewModel.cats.count, section: 0)
-                            expect({
-                                try viewModel.viewModelForItem(at: indexPath)
-                            }).to(throwError(Errors.indexOutOfBound))
-                        }
+                        expect(result.isSuccess).notTo(beTrue())
+                        let indexPath = IndexPath(row: viewModel.cats.count, section: 0)
+                        expect({
+                            try viewModel.viewModelForItem(at: indexPath)
+                        }).to(throwError(Errors.indexOutOfBound))
                         done()
                     }
                 }
