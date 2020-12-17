@@ -42,6 +42,7 @@
 		A0EEF6732561099E00F137ED /* GetErrorJson.json in Resources */ = {isa = PBXBuildFile; fileRef = A0EEF6722561099E00F137ED /* GetErrorJson.json */; };
 		AF72E7CE9AA19B14E0C8CB53 /* Pods_DemoUnitTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 394D97A90DF75EC7AF91DE8A /* Pods_DemoUnitTestTests.framework */; };
 		EBB7ACEC257F37A80084A15B /* CatCollectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB7ACEB257F37A80084A15B /* CatCollectionTest.swift */; };
+		EBB7AD0F257F7B480084A15B /* ApiCatTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB7AD0E257F7B480084A15B /* ApiCatTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		C4D23EC61BDE5D3BD46B1954 /* Pods-DemoUnitTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoUnitTest.release.xcconfig"; path = "Target Support Files/Pods-DemoUnitTest/Pods-DemoUnitTest.release.xcconfig"; sourceTree = "<group>"; };
 		E037F6D72BB9289AF94ED3F6 /* Pods_DemoUnitTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoUnitTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB7ACEB257F37A80084A15B /* CatCollectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCollectionTest.swift; sourceTree = "<group>"; };
+		EBB7AD0E257F7B480084A15B /* ApiCatTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCatTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,9 +267,10 @@
 		A0A8561C2552A7BA00C96037 /* DemoUnitTestTests */ = {
 			isa = PBXGroup;
 			children = (
-				A0192CA7255FAC31002C3B71 /* ViewModel */,
+				EBB7AD0D257F7B270084A15B /* API */,
 				A0192C99255E1F1E002C3B71 /* FakeData */,
 				A0A8561F2552A7BA00C96037 /* Info.plist */,
+				A0192CA7255FAC31002C3B71 /* ViewModel */,
 			);
 			path = DemoUnitTestTests;
 			sourceTree = "<group>";
@@ -311,6 +314,14 @@
 				A0D04273255A8DB000FD5E3E /* CatCellViewModel.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		EBB7AD0D257F7B270084A15B /* API */ = {
+			isa = PBXGroup;
+			children = (
+				EBB7AD0E257F7B480084A15B /* ApiCatTest.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -534,6 +545,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A02615752553A80500A5DB60 /* LoginViewModelTest.swift in Sources */,
+				EBB7AD0F257F7B480084A15B /* ApiCatTest.swift in Sources */,
 				A0206B3325762C7600C59F0E /* InputInfoViewModelTest.swift in Sources */,
 				EBB7ACEC257F37A80084A15B /* CatCollectionTest.swift in Sources */,
 			);
